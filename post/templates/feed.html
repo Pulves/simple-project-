@@ -1,0 +1,44 @@
+<!-- templates/feed.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter-like Feed</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .post {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .post .content {
+            font-size: 16px;
+        }
+        .post .author {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .post .created-at {
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>What's happening?</h2>
+        <div class="feed">
+            {% for post in posts %}
+                <div class="post">
+                    <p class="author">{{ post.author.username }}</p>
+                    <p class="content">{{ post.content }}</p>
+                    <p class="created-at">{{ post.created_at }}</p>
+                </div>
+            {% empty %}
+                <p>No posts yet. Be the first to tweet!</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
