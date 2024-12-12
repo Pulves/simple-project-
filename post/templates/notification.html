@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'notif.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container"> 
+        <header>
+            <div class="notify-box">
+                <h1 class="title">Notifications</h1>
+                <span id="notifications"></span>
+
+            </div>
+            <p id="mark-all">Mark all as read</p>
+        </header>
+
+        <main>
+            {% if data %}
+                {% for notif in data %}
+                <div class="notify-card unread">
+                    
+                    <div class="description">
+                        
+                        <p class="user-activity">
+                            <li>{{notif.owner}} {{notif.content}}</li>
+                        </p>
+
+                        <p class="time"></p>
+                        
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </main>
+    </div>
+    
+</body>
+</html>

@@ -47,12 +47,16 @@ def create_post(request):
 
 def notifications(request):
     user = request.user
-    notify = Notification.objects.filter(receiver=User.objects.first()).all()
+    notification = Notification.objects.filter(receiver=User.objects.first()).all()
     
-    data = {
-        'owner': notify.first().sender.username,
-        'read': notify.first().is_read,
-        'content': notify.first().content
-    }
+    data = [
+        {'owner': f'{notify.sender.username}',
+        'read': f'{notify.is_read}',
+        'content': f'{notify.content}'
+        }
+        for notify in notification
+    ]
+    
+    #data = dict(data)
 
-    return JsonResponse(data)
+    return render(request, 'notification.html', {'data':data})
